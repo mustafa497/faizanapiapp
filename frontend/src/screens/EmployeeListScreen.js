@@ -18,7 +18,7 @@ function EmployeeListScreen({ history, match }) {
     const employeeDelete = useSelector(state => state.employeeDelete)
     const { success: successDelete } = employeeDelete
   
-    let keywocrd = history.location.search
+    let keyword = history.location.search
 
     
     useEffect(() => {
