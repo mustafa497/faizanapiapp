@@ -56,7 +56,7 @@ function EmployeeEditScreen({ match, history }) {
 
     return (
         <div>
-            <Link to='/employeelist'>
+            <Link to='/'>
                 Go Back
             </Link>
 
