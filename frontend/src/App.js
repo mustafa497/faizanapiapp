@@ -19,7 +19,7 @@ function App(){
         <Container>
           
 
-          <Route path='/employeelist' component={EmployeeListScreen} />
+          <Route path='/' component={EmployeeListScreen} exact/>
           <Route path='/employee/:id' component={EmployeeScreen} />
           <Route path='/employee/:id/edit' component={EmployeeEditScreen} />
 
