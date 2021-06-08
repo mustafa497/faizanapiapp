@@ -4,10 +4,14 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { listEmployees, createEmployee, deleteEmployee } from '../actions/employeeActions'
 import { EMPLOYEE_CREATE_RESET } from '../constants/employeeConstants'
+import Header from '../components/Header'
 
 function EmployeeListScreen({ history, match }) {
 
     const dispatch = useDispatch()
+
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
 
     const employeeList = useSelector(state => state.employeeList)
     const { employees } = employeeList
@@ -18,18 +22,24 @@ function EmployeeListScreen({ history, match }) {
     const employeeDelete = useSelector(state => state.employeeDelete)
     const { success: successDelete } = employeeDelete
   
-    let keywocrd = history.location.search
+    let keyword = history.location.search
 
     
     useEffect(() => {
-        dispatch({ type: EMPLOYEE_CREATE_RESET })
+        
 
-        if (successCreate) {
-            history.push(`/employee/${createdEmployee.id}/edit`)
+        if (userInfo) {
+            dispatch({ type: EMPLOYEE_CREATE_RESET })
+            if (successCreate) {
+                history.push(`/employee/${createdEmployee.id}/edit`)
+            } else {
+                dispatch(listEmployees(keyword))
+            }
         } else {
-            dispatch(listEmployees(keyword))
+            history.push('/login')
         }
-    }, [dispatch, history, successCreate, createdEmployee, successDelete])
+        
+    }, [dispatch, history, successCreate, createdEmployee, successDelete, userInfo])
 
 
     const createEmployeeHandler = () => {
@@ -46,6 +56,7 @@ function EmployeeListScreen({ history, match }) {
     
     return (
         <div>
+            <Header />
             <Row className='align-items-center'>
                 <Col>
                     <h1>Employees</h1>

@@ -17,7 +17,7 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         data = super().validate(attrs)
 
-        serializer = UserSerializerWithTOken(self.user).data
+        serializer = UserSerializerWithToken(self.user).data
         for k, v in serializer.items():
             data[k] = v
 
@@ -50,7 +50,7 @@ def registerUser(request):
 
 
 @api_view(['GET'])
-def getuserProfile(request):
+def getUserProfile(request):
     user = request.user
     serializer = UserSerializer(user, many=False)
 
@@ -86,7 +86,7 @@ def updateEmployee(request, pk):
 
 
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
+@permission_classes([IsAuthenticated])
 def getEmployees(request):
     employees = Employee.objects.all()
     serializer = EmployeeSerializer(employees, many=True)
@@ -102,7 +102,7 @@ def getEmployee(request, pk):
 
 
 @api_view(['DELETE'])
-# @permission_classes([IsAdminUser])
+# @permission_classes([IsAuthenticated])
 def deleteEmployee(request, pk):
     employeeForDeletion = Employee.objects.get(id=pk)
     employeeForDeletion.delete()

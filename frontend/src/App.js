@@ -9,6 +9,8 @@ import Footer from './components/Footer'
 import EmployeeListScreen from './screens/EmployeeListScreen'
 import EmployeeScreen from './screens/EmployeeScreen'
 import EmployeeEditScreen from './screens/EmployeeEditScreen'
+import LoginScreen from './screens/LoginScreen'
+import RegisterScreen from './screens/RegisterScreen'
 
 
 function App(){
@@ -19,9 +21,11 @@ function App(){
         <Container>
           
 
-          <Route path='/employeelist' component={EmployeeListScreen} />
+          <Route path='/' component={EmployeeListScreen} exact/>
           <Route path='/employee/:id' component={EmployeeScreen} />
           <Route path='/employee/:id/edit' component={EmployeeEditScreen} />
+          <Route path='/login' component={LoginScreen} />
+          <Route path='/register' component={RegisterScreen} />
 
         </Container>
       </main>

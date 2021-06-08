@@ -7,7 +7,7 @@ urlpatterns = [
     path('users/login/', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('users/register/', views.registerUser, name='register'),
 
-    path('users/profile/', views.getuserProfile, name='users-profile'),
+    path('users/profile/', views.getUserProfile, name='users-profile'),
 
     path('employees/', views.getEmployees, name='employees'),
     path('employee/create/', views.createEmployee, name='employee-create'),

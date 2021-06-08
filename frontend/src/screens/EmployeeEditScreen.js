@@ -19,6 +19,9 @@ function EmployeeEditScreen({ match, history }) {
 
     const dispatch = useDispatch()
 
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
+
     const employeeDetails = useSelector(state => state.employeeDetails)
     const { employee } = employeeDetails
 
@@ -28,18 +31,22 @@ function EmployeeEditScreen({ match, history }) {
 
     useEffect(() => {
 
-        if (successUpdate) {
-            dispatch({ type: EMPLOYEE_UPDATE_RESET })
-            history.push('/employeelist')
-        } else {            
-            setNumber(employee.number)
-            setOptin(employee.optin)
-            setUserid(employee.userid)
+        if (userInfo) {
+            if (successUpdate) {
+                dispatch({ type: EMPLOYEE_UPDATE_RESET })
+                history.push('/employeelist')
+            } else {
+                setNumber(employee.number)
+                setOptin(employee.optin)
+                setUserid(employee.userid)
+            }
+        } else {
+            history.push('/login')
         }
 
 
-
-    }, [dispatch, employee, history, successUpdate])
+    
+    }, [dispatch, employee, history, successUpdate, userInfo])
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -56,7 +63,7 @@ function EmployeeEditScreen({ match, history }) {
 
     return (
         <div>
-            <Link to='/employeelist'>
+            <Link to='/'>
                 Go Back
             </Link>
 

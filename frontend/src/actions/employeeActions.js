@@ -24,12 +24,25 @@ import {
 } from '../constants/employeeConstants'
 
 
-export const listEmployees = () => async (dispatch) => {
+export const listEmployees = () => async (dispatch, getState) => {
     try {
         dispatch({ type: EMPLOYEE_LIST_REQUEST })
 
-        const { data } = await axios.get('http://127.0.0.1:8000/api/employees/')
-        // const { data } = await axios.get(`/api/employees${keyword}`)
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                'Content-type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const { data } = await axios.get(
+                'http://127.0.0.1:8000/api/employees/',
+                config
+            )
 
         dispatch({
             type: EMPLOYEE_LIST_SUCCESS,
