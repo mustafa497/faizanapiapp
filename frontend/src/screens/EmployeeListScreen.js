@@ -4,7 +4,7 @@ import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { listEmployees, createEmployee, deleteEmployee } from '../actions/employeeActions'
 import { EMPLOYEE_CREATE_RESET } from '../constants/employeeConstants'
-import Header from '../components/Header'
+
 
 function EmployeeListScreen({ history, match }) {
 
@@ -56,7 +56,6 @@ function EmployeeListScreen({ history, match }) {
     
     return (
         <div>
-            <Header />
             <Row className='align-items-center'>
                 <Col>
                     <h1>Employees</h1>
