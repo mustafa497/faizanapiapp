@@ -16,11 +16,9 @@ import RegisterScreen from './screens/RegisterScreen'
 function App(){
     return(
     <Router>
-      
+      <Header />
       <main className="py-3">
         <Container>
-          
-
           <Route path='/' component={EmployeeListScreen} exact/>
           <Route path='/employee/:id' component={EmployeeScreen} />
           <Route path='/employee/:id/edit' component={EmployeeEditScreen} />
