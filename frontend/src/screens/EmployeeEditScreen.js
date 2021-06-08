@@ -34,7 +34,7 @@ function EmployeeEditScreen({ match, history }) {
         if (userInfo) {
             if (successUpdate) {
                 dispatch({ type: EMPLOYEE_UPDATE_RESET })
-                history.push('/employeelist')
+                history.push('/')
             } else {
                 setNumber(employee.number)
                 setOptin(employee.optin)
